@@ -3,7 +3,7 @@
 #Imports
 
 from PIL import Image
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import numpy as  np
 import os
 
@@ -49,7 +49,23 @@ def sumProcessInput(i,path):
             
             
             
+#def sumProcessInputFast(i,path):
+#    
+#    
+###   data=cv2.imread(path+i)
+#    sumdata= np.array(range(0,(256*3)))
+#    sumdata.astype(long)
+#    sumdata[:]=0
+#    for p in range(len(data[:,1])):
+#        for j in range(len(data[1,:])):
+#            r,b,g= data[p,j]
+#            sum=r+g+b
+#            sumdata[sum]=sumdata[sum]+1
+        
+        
             
+#    return sumdata
+                     
             
             
             

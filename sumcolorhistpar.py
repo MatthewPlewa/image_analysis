@@ -25,15 +25,18 @@ if __name__ == "__main__":
     shift=0#this is the min pixel value to be displayed
     
     __location__ = os.path.realpath(os.path.join(os.getcwd(), 
-        os.path.dirname(__file__)))   
+        os.path.dirname(__file__))).rstrip()   
 
-    file=open(os.path.join(__location__, 'paths.txt'),'r')
+    file=open(os.path.join(__location__, 'paths.txt').rstrip(),'r')
 
 
-    #path = "D:\M2i\habit\cosmicray\data4-2-15flight\images\GO012186(4-9-20152-15-27PM)/"
+    
     path1=file.read()
-    path=os.path.join(__location__,path1)
+    path=os.path.join(__location__,path1).rstrip()
     #this gives the ability to go through all of the images 
+    
+    path = "D:/M2i/habit/cosmicray/data4-2-15flight/images/GO012186(4-9-20152-15-27PM)/"
+    path = "D:/WIPAC/4kvideos/img/"
     imgs=os.listdir(path)
     start=0
     numtodo=100 #to do all of the images you will have to set this to len(imgs)
@@ -56,16 +59,13 @@ if __name__ == "__main__":
     
     if num_cores>5:
         num_cores=5
-
-    result= Parallel(n_jobs=num_cores,verbose=5)(delayed(parMOD.sumProcessInput)(i,path) 
-        for i in imgs)
-    x=0
     result=np.array(range(0,numtodo))
     result.astype(long)
     result[:]=0
-    for i in imgs:
-        result[x]=parMOD.sumProcessInput(i,path)
-        x=x+1
+    
+    result= Parallel(n_jobs=num_cores,verbose=5)(delayed(parMOD.sumProcessInput)(i,path) 
+        for i in imgs)
+
     results = np.array(result)
     t1=time.time()
     np.save(os.path.join(__location__,str(int(t1))+'_hist_data.npy'),results)
@@ -74,9 +74,9 @@ if __name__ == "__main__":
     for i in range(numtodo):
         sumdata = sumdata+results[i]
     np.save(os.path.join(__location__,str(int(t1))+'_sum_hist_data.npy'),results)
-    #plt.plot(sumdata)
-    #plt.yscale("log")
-    #plt.show()
+    plt.plot(sumdata)
+    plt.yscale("log")
+    plt.show()
     t1=time.time()
     #plt.savefig(os.path.join(__location__,str(int(t1))+'_hist.png'))
     

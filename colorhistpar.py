@@ -77,7 +77,7 @@ if __name__ == "__main__":
     plt.plot(r)
     plt.yscale("log")
     plt.subplot(412)
-    plt/user.plot(g)
+    plt.plot(g)
     plt.yscale("log")
     plt.subplot(413)
     plt.plot(b)
