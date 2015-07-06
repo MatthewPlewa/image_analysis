@@ -3,7 +3,7 @@
 #Imports
 
 #from PIL import Image
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import numpy as  np
 import os
 import time
@@ -37,9 +37,10 @@ if __name__ == "__main__":
     
     path = "D:/M2i/habit/cosmicray/data4-2-15flight/images/GO012186(4-9-20152-15-27PM)/"
     path = "D:/WIPAC/4kvideos/img/"
+    path="/mnt/lfs3/user/justin/deco/4kvideos/6-4-15/"
     imgs=os.listdir(path)
     start=0
-    numtodo=100 #to do all of the images you will have to set this to len(imgs)
+    numtodo=111111111111 #to do all of the images you will have to set this to len(imgs)
     if(start+numtodo> len(imgs)):
         if(start>=len(imgs)):#this will make it so that you cannot go out of range
             exit
@@ -57,8 +58,8 @@ if __name__ == "__main__":
     sum1.astype(long)
     sum1[:]=0
     
-    if num_cores>5:
-        num_cores=5
+    if num_cores>6:
+        num_cores=6
     result=np.array(range(0,numtodo))
     result.astype(long)
     result[:]=0
@@ -73,11 +74,11 @@ if __name__ == "__main__":
     sumdata[:]=0
     for i in range(numtodo):
         sumdata = sumdata+results[i]
-    np.save(os.path.join(__location__,str(int(t1))+'_sum_hist_data.npy'),results)
-    plt.plot(sumdata)
-    plt.yscale("log")
-    plt.show()
-    t1=time.time()
+    np.save(os.path.join(__location__,str(int(t1))+'_sum_hist_data.npy'),sumdata)
+    #plt.plot(sumdata)
+    #plt.yscale("log")
+    #plt.show()
+    #t1=time.time()
     #plt.savefig(os.path.join(__location__,str(int(t1))+'_hist.png'))
     
     

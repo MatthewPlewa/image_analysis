@@ -6,6 +6,7 @@ from PIL import Image
 #import matplotlib.pyplot as plt
 import numpy as  np
 import os
+#import cv2
 
 
 def processInput(i,path):
@@ -34,9 +35,8 @@ def sumProcessInput(i,path):
     im = Image.open(path+i)
     
     data=im.getdata()
-    sumdata= np.array(range(0,(256*3)))
-    sumdata.astype(long)
-    sumdata[:]=0
+    sumdata= np.zeros(256*3, dtype=np.long)
+    
     for i in range(len(data)):
         r,b,g = data[i]
         sum=r+g+b
@@ -45,26 +45,33 @@ def sumProcessInput(i,path):
         
             
     return sumdata
+    
+    
+def brightestProcessInput(i,path):
+    
+    
+    im = Image.open(path+i)
+    
+    #data=im.g
+        
+        
+    sumdata= np.zeros(256*3, dtype=np.long)            
+    return sumdata
             
             
             
-            
-#def sumProcessInputFast(i,path):
-#    
-#    
-###   data=cv2.imread(path+i)
-#    sumdata= np.array(range(0,(256*3)))
-#    sumdata.astype(long)
-#    sumdata[:]=0
-#    for p in range(len(data[:,1])):
-#        for j in range(len(data[1,:])):
-#            r,b,g= data[p,j]
-#            sum=r+g+b
-#            sumdata[sum]=sumdata[sum]+1
+def sumProcessInputF(i,path):
+    data=0#cv2.imread(path+i)
+    sumdata= np.zeros(256*3, dtype=np.long)
+    for p in range(len(data[:,1])):
+        for j in range(len(data[1,:])):
+            r,b,g= data[p,j]
+            sum=r+g+b
+            sumdata[sum]=sumdata[sum]+1
         
         
             
-#    return sumdata
+    return sumdata
                      
             
             
