@@ -72,6 +72,19 @@ def sumProcessInputF(i,path):
         
             
     return sumdata
+    
+def hist(v,data,minrequired,numtodo):
+    print v
+    results=0
+    for i in range(numtodo):
+        numpix=0
+        z=0
+        for x in range(v,len(data[1])):
+            z = z+data[i][x]
+        if(z>=minrequired):
+            results=results+1
+            
+    return results
                      
             
             
