@@ -30,17 +30,22 @@ def processInput(i,path):
     
     
 def sumProcessInput(i,path):
-    
-    
-    im = Image.open(path+i)
-    
-    data=im.getdata()
     sumdata= np.zeros(256*3, dtype=np.long)
+    if os.stat(path+i).st_size==0:
+        return sumdata
+    if i.endswith('.jpg'):
+        im = Image.open(path+i)
     
-    for i in range(len(data)):
-        r,b,g = data[i]
-        sum=r+g+b
-        sumdata[sum]=sumdata[sum]+1
+        data=im.getdata()
+        sumdata= np.zeros(256*3, dtype=np.long)
+    
+        for i in range(len(data)):
+            r,b,g = data[i]
+            sum=r+g+b
+            sumdata[sum]=sumdata[sum]+1
+            
+    else:
+        print('no good')
         
         
             
@@ -85,6 +90,22 @@ def hist(v,data,minrequired,numtodo):
             results=results+1
             
     return results
+
+
+def hist2(z,data,startpix,numtodo,minval,maxval):
+    result=np.zeros(maxval)
+    for v in range(minval,maxval+1):
+        print v
+        for i in range(numtodo):
+            numpix=0
+            z=0
+            for x in range(v,len(data[1])):
+                z = z+data[i][x]
+            if(z>=startpix+z):
+                result[v]=result[v]+1
+    print result
+                
+    return result
                      
             
             

@@ -19,7 +19,7 @@ import parMOD
 
     
 num_cores = multiprocessing.cpu_count()
-print num_cores
+print num_cores 
 if __name__ == "__main__":
 
     shift=0#this is the min pixel value to be displayed
@@ -30,7 +30,7 @@ if __name__ == "__main__":
     #file=open(os.path.join(__location__, 'paths.txt'),'r')
     #path=file.read()
 
-    path = "D:/Wipac/4kvideos/7-1-15--3/"
+    path = "D:/Wipac/python/image_analysis/data/PRIORITY/"
     
 
     #this gives the ability to go through all of the images 
@@ -59,6 +59,8 @@ if __name__ == "__main__":
     #print results
     results = np.array(results)
     results=results*1.0
+    
+    
     
 
         
